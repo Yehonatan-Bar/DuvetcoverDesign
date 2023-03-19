@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#portal {
+    text-align: center;
+}
+
+#quanya {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#designer h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#image-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.image-wrapper {
+    position: relative;
+    margin: 10px;
+}
+
+.image-wrapper img {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.image-wrapper .selected {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}

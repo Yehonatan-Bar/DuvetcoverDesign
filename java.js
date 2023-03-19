@@ -1,60 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
-const input = document.getElementById("input");
-const designPage = document.getElementById("designPage");
-const imageContainers = document.querySelectorAll(".image-container");
-const checkmarks = document.querySelectorAll(".checkmark");
-const uploadBtn = document.getElementById("upload");
-const confirmBtn = document.getElementById("confirm");
-const cancelBtn = document.getElementById("cancel");
+$(document).ready(function() {
+    const password = 'melon';
+    const imagesPath = 'C:/Users/User/Documents/Miscellaneous/Fantasy Pictures Album';
 
-input.addEventListener("input", () => {
-  if (input.value === "melon") {
-    portal.style.display = "none";
-    designPage.style.display = "block";
-  }
-});
+    $('#password').on('input', function() {
+        if ($(this).val() === password) {
+            $('#portal').fadeOut(function() {
+                $('#designer').fadeIn();
+            });
+        }
+    });
 
-imageContainers.forEach((container, index) => {
-  container.addEventListener("click", () => {
-    const checkmark = checkmarks[index];
-    checkmark.style.display = checkmark.style.display === "none" ? "block" : "none";
-  });
-});
+    $(document).on('click', '.image-wrapper img', function() {
+        $(this).parent().toggleClass('selected');
+    });
 
-uploadBtn.addEventListener("click", () => {
-  const fileInput = document.createElement("input");
-  fileInput.type = "file";
-  fileInput.accept = "image/*";
-  fileInput.addEventListener("change", () => {
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const img = document.createElement("img");
-      img.src = e.target.result;
-      img.alt = "Uploaded Image";
-      const container = document.createElement("div");
-      container.classList.add("image-container");
-      container.appendChild(img);
-      const checkmark = document.createElement("div");
-      checkmark.classList.add("checkmark");
-      checkmark.innerHTML = "&#10003;";
-      container.appendChild(checkmark);
-      designPage.insertBefore(container, uploadBtn);
-    };
-    reader.readAsDataURL(file);
-  });
-  fileInput.click();
-});
+    $('#confirm').on('click', function() {
+        // Add functionality to process the selected images and send an email
+    });
 
-confirmBtn.addEventListener("click", () => {
-  // Implement the code to create the final design, then send it to the specified email address.
-});
+    $('#cancel').on('click', function() {
+        $('.image-wrapper.selected').removeClass('selected');
+    });
 
-cancelBtn.addEventListener("click", () => {
-  checkmarks.forEach((checkmark) => {
-    checkmark.style.display = "none";
-  });
-});
-</script>
+    $('#upload').on('click', function() {
+        $('#file-input').click();
+    });
 
+    $('#file-input').on('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageWrapper = $('<div>').addClass('image-wrapper');
+                const img = $('<img>').attr('src', e.target.result);
+                imageWrapper.append(img);
+                $('#image-container').append(imageWrapper);
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 });

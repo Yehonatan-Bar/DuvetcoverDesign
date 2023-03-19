@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quanya</title>
+<style>
+body {font-family: Arial, sans-serif; text-align: center;}
+#portal {position: relative; width: 100%; height: 80vh; background-color: #333;}
+#gate {position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+#gate img {max-width: 100%; max-height: 100%; opacity: 0.6;}
+#gate:after {
+  content: "Quanya: Say friend and enter";
+  position: absolute; top: 0; left: 0; right: 0; font-size: 2rem; color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+#inputWrapper {position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);}
+#input {font-size: 1.5rem; background: transparent; color: white; border: none; border-bottom: 1px solid white;}
+#input:focus {outline: none;}
+#designPage {display: none;}
+.image-container {display: inline-block; position: relative;}
+.image-container img {max-width: 200px; max-height: 200px; margin: 1rem;}
+.image-container .checkmark {
+  position: absolute; top: 0; right: 0; width: 30px; height: 30px; background-color: green;
+  display: none; text-align: center; color: white; font-size: 20px;
+}
+.button {margin: 1rem; padding: 0.5rem 1rem; font-size: 1.2rem;}
+#cancel, #confirm {display: none;}
+</style>
+</head>
+<body>
+<div id="portal">
+  <div id="gate">
+    <img src="path/to/your/portal-image.jpg" alt="Tolkien's Fantasy Portal">
+  </div>
+  <div id="inputWrapper">
+    <input type="text" id="input" placeholder="Enter the secret word...">
+  </div>
+</div>
+<div id="designPage">
+  <h1>Creating a blanket and pillow cover of your choice...</h1>
+  <p>
+    You can choose one image and you can combine images as you wish, the images below are only suggestions
+    and you can upload other images from your personal device.
+  </p>
+  <div class="image-container">
+    <img src="data:image/png;base64,...base64-image..." alt="Image 1">
+    <div class="checkmark">&#10003;</div>
+  </div>
+  <!-- Add more images here -->
+  <button id="upload" class="button">Upload</button>
+  <button id="confirm" class="button">Confirm</button>
+  <button id="cancel" class="button">Cancel</button>
+</div>
+<script>
+const portal = document.getElementById("portal");
